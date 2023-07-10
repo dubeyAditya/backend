@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { UserBlogsService } from './user-blogs.service';
-
-@Controller()
+import { Blog } from './dto/create-blog.dto';
+@Controller('user-blog')
 export class UserBlogsController {
   constructor(private readonly userBlogsService: UserBlogsService) {}
 
-  @Get()
-  getHello(): string {
-    return this.userBlogsService.getHello();
+  @Post()
+  createBlog(@Body() blog: Blog): string {
+    return this.userBlogsService.createBlog(blog);
   }
 }
